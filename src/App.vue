@@ -10,7 +10,15 @@
     </transition>
   </div>
   <div class="container">
-    <transition name="para" @before-enter="beforeenter" @before-leave="beforeleave">
+    <transition
+      name="para"
+      @before-enter="beforeenter"
+      @enter="enter"
+      @after-enter="afterenter"
+      @before-leave="beforeleave"
+      @leave="leave"
+      @after-leave="afterleave"
+    >
       <p v-if="paraIsVisible">My Pragraph is visbile?</p>
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
@@ -35,12 +43,31 @@ export default {
     };
   },
   methods: {
-    beforeenter(){
+    beforeenter(el) {
       console.log('before enter');
+      console.log(el);
     },
-    beforeleave(){
+    enter(el) {
+      console.log('enter');
+      console.log(el);
+    },
+    afterenter(el) {
+      console.log('after enter');
+      console.log(el);
+    },
+    beforeleave(el) {
       console.log('before leave');
+      console.log(el);
     },
+    leave(el) {
+      console.log('leave');
+      console.log(el);
+    },
+    afterleave(el) {
+      console.log('after leave');
+      console.log(el);
+    },
+
     openButton() {
       this.dataIsvisible = true;
     },
